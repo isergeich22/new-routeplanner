@@ -21,7 +21,7 @@ exports.navBar = navBar =
         <img src="/img/logo.png" alt="route_planner">
         <p class="nav-item"><a href="http://localhost:3030/">Создать маршрут</a></p>
         <p class="nav-item"><a href="http://localhost:3030/current_route">Текущий маршрут</a></p>
-        <p class="nav-item"><a href="http://localhost:3030/history">История маршрутов</a></p>
+        <p class="nav-item"><a href="http://localhost:3030/show_history">История маршрутов</a></p>
     </nav>
 `
 exports.createComponent = createComponent = 
@@ -44,42 +44,44 @@ exports.routeList = routeList = (contents) =>
     
 `
 
-exports.startSumField = startSumField = (contents) =>
+exports.startSumField = startSumField = 
 `
     <div class="elem-wrapper"></div>
     <section class="finalsum">
         <div class="sum-block">
             <label for="startsum">Выданная сумма: </label>
-            <input type="text" name="startsum" id="startsum" value="${contents}">
-            <button type="submit" id="get-start">Зафиксировать</button>
+            <input type="text" name="startsum" id="startsum">
         </div>
     </section>
 `
 
-exports.extraSumFields = extraSumFields = 
+exports.extraSumFields = extraSumFields = (contents) =>
 `
     <div class="elem-wrapper"></div>
     <section class="finalsum">
         <div class="sum-block">
             <label for="startsum">Выдано: </label>
-            <input type="text" name="startsum" id="startsum" value="0">
-            <button type="submit" id="remove-start">Удалить</button>
-            <button type="submit" id="get-start">Зафиксировать</button>
+            <input type="text" name="startsum" id="startsum" value="${contents}">
         </div>
         <div class="sum-block">
             <label for="finalsum">Итого: </label>
-            <input type="text" name="finalsum" id="startsum" value="0">
-            <button type="submit" id="get-final">Подсчитать</button>
+            <input type="text" name="finalsum" id="wastedsum" value="0">
         </div>
         <div class="sum-block">
             <label for="finalroad">Проезд: </label>
-            <input type="text" name="finalroad" id="finalroad" value="0">
-            <button type="submit" id="get-road">Зафиксировать</button>
+            <input type="text" name="finalroad" id="roadsum" value="0">
         </div>
         <div class="sum-block">
             <label for="finalleftover">Остаток: </label>
-            <input type="text" name="finalleftover" id="finalleftover" value="0">
-            <button type="submit" id="get-leftover">Подсчитать</button>
+            <input type="text" name="finalleftover" id="leftoversum" value="0">
         </div>
+    </section>
+`
+
+exports.historyList = historyList = (contents) => 
+`
+    <div class="elem-wrapper"></div>
+    <section class="history-list">
+        ${contents}
     </section>
 `

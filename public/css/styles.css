@@ -75,6 +75,32 @@ h1 {
         color: #ff4343;
     }
 
+#save_route {
+    width: 20%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: 1px solid #000;
+    font-family: var(--main-font);
+    height: 40px;
+}
+
+    #save_route a, #save_route a:visited {
+        padding: 10px 5px;
+        text-decoration: none;
+        color: #000;
+    }
+
+    #save_route:hover {
+        color: #fff;
+        background-color: #000;
+    }
+
+    #save_route a:hover {
+        color: #fff;
+    }
+
 .addAction, .addSend {
     position: relative;
     z-index: 1;
@@ -176,6 +202,22 @@ h1 {
         background: #cbcbcb46;
     }
 
+        .card #start_time {
+            height: 20px;
+            width: 12%;
+            border: 1px solid #000;
+            background: #fff;
+            font-family: var(--main-font);
+            transition: .3s ease-in;
+            font-size: .6rem;
+        }
+
+        .card #start_time:hover {
+            background: #000;
+            color: #fff;
+            transition: .3s ease-in;
+        }
+
         .card #done, .card #done_send {
             width: 10%;
         }
@@ -204,6 +246,29 @@ h1 {
             #cost:focus {
                 outline: none;
             }
+        
+        .card #confirm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            width: 2.5%;            
+            background: #fff;
+            font-family: var(--main-font);
+            transition: .3s ease-in;
+            border: none;
+            background: none;
+        }
+
+            #confirm:hover {
+                border: 1px solid #000;
+                color: #fff;
+                transition: .3s ease-in;
+            }
+
+            #confirm svg:hover {
+                color: #fff;
+            }
 
         .card #send {
             height: 20px;
@@ -220,8 +285,28 @@ h1 {
                 transition: .3s ease-in;
             }
 
+            #send:hover a {
+                color: #fff;
+            }
+
+            #send a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            #send a:hover {
+                color: #fff;
+            }
+
+            #send a:visited {
+                color: #000;
+            }
+
         .card #remove {
             font-family: var(--main-font);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 20px;
             width: 4%;
             color: #ff4343;
@@ -237,9 +322,9 @@ h1 {
             }
 
      .finalsum {
-        width: 80%;
+        width: 20%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         flex-wrap: wrap;
         align-items: flex-end;
@@ -251,8 +336,8 @@ h1 {
             display: flex;
             align-content: center;
             justify-content: center;
-            width: 24%;
-            margin-right: 1%;
+            width: 100%;
+            padding: 10px 15px;
         }
 
             .sum-block label {
@@ -291,3 +376,82 @@ h1 {
     .active{
         border-bottom: 1px solid #000;
     }
+
+.history-list {
+    width: 60%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+    .list-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4.5%;
+        margin: 0 auto;
+        padding: 10px 15px;
+        width: 100%;
+        font-family: var(--main-font);
+        font-weight: var(--nav-weight);
+        border-bottom: 1px solid #cbcbcb46;
+    }
+
+        .list-header span {
+            width: 10%;
+        }
+        
+        .list-header #first {
+            width: 13.5%;
+        }
+
+    .table-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5%;
+        padding: 10px 15px;
+        width: 100%;
+        font-family: var(--main-font);
+        font-weight: var(--main-weight);
+        border-bottom: 1px solid #cbcbcb46;
+    }
+
+    .table-row:nth-child(even){
+        background: #cbcbcb46;
+    }
+
+        .table-row .list {
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 7px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+            .table-row .list span {
+                width: 100%;
+                font-size: 1rem;
+            }
+
+        .table-row span {
+            width: 10%;
+            display: flex;
+            align-items: center;
+        }
+
+            .table-row span #remove {
+                font-family: var(--main-font);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 20px;
+                width: 20%;
+                color: #ff4343;
+                border: 1px solid #ff4343;
+                background: #fff;
+                transition: .3s ease-in;
+            }
