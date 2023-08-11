@@ -1,8 +1,7 @@
 {
     "scripts": {
-        "start": "npm install && npm run build",
-        "dev": "nodemon app.js",
-        "build": "./node_modules --out-dir public"
+        "start": "node app.js",
+        "dev": "nodemon app.js"
     },
     "dependencies": {
         "express": "^4.18.2"
