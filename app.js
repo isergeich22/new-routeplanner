@@ -106,7 +106,7 @@ app.get('/current_route', async function(req, res) {
                         <path d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg></button>
                         <button type="submit" id="send" data-point="${e.name}"><a id="change">Зафиксировать</a></button>
-                        <button type="submit" id="remove" data-point="${e.name}"><a href="http://localhost:3030/current_route?name=${e.name}">
+                        <button type="submit" id="remove" data-point="${e.name}"><a href="/current_route?name=${e.name}">
                         <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" fill=""/>
                         <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
@@ -116,6 +116,25 @@ app.get('/current_route', async function(req, res) {
         })
 
         startSum = parseInt(result.start_sum)
+
+    }
+
+    async function changeStartSum(path, start_sum) {
+
+        if(start_sum != 0 && start_sum != '' && start_sum != undefined && typeof startSum == 'number') {
+
+            let data = fs.readFileSync(path)
+
+            let result = JSON.parse(data)
+
+            let obj = {
+                points: result.points,
+                start_sum: start_sum
+            }
+
+            fs.writeFileSync(path, JSON.stringify(obj))
+
+        }
 
     }
 
@@ -220,6 +239,10 @@ app.get('/current_route', async function(req, res) {
 
         await changePointsRoute(current_route, req.query.name, '', '')
 
+    }
+
+    if(req.query.new_start !== undefined) {
+        await changeStartSum(current_route, req.query.new_start)
     }
 
     await renderRoute(current_route)
@@ -367,7 +390,7 @@ app.get('/show_history', async function(req, res){
                         <span>${e.road_sum}</span>
                         <span>${e.left_over}</span>
                         <span>${e.route_date}</span>
-                        <span><button type="submit" id="remove"><a href="http://localhost:3030/show_history?date=${e.route_date}">
+                        <span><button type="submit" id="remove"><a href="/show_history?date=${e.route_date}">
                         <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" fill=""/>
                         <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>

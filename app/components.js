@@ -19,9 +19,9 @@ exports.navBar = navBar =
 `
     <nav class="nav-section">
         <img src="/img/logo.png" alt="route_planner">
-        <p class="nav-item"><a href="http://localhost:3030/">Создать маршрут</a></p>
-        <p class="nav-item"><a href="http://localhost:3030/current_route">Текущий маршрут</a></p>
-        <p class="nav-item"><a href="http://localhost:3030/show_history">История маршрутов</a></p>
+        <p class="nav-item"><a href="/">Создать маршрут</a></p>
+        <p class="nav-item"><a href="/current_route">Текущий маршрут</a></p>
+        <p class="nav-item"><a href="/show_history">История маршрутов</a></p>
     </nav>
 `
 exports.createComponent = createComponent = 
@@ -62,6 +62,7 @@ exports.extraSumFields = extraSumFields = (contents) =>
         <div class="sum-block">
             <label for="startsum">Выдано: </label>
             <input type="text" name="startsum" id="startsum" value="${contents}">
+            <button type="submit"><a id="change_start">Изменить сумму</a></button>
         </div>
         <div class="sum-block">
             <label for="finalsum">Итого: </label>

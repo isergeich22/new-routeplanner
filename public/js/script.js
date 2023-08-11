@@ -19,11 +19,11 @@ const getStart = document.querySelector('#get-start')
 
 let start_Sum = 0
 
-if((document.location.href).indexOf('show_history') < 0) {
+if((document.location.href).indexOf('show_history') < 0 && (document.location.href).indexOf('current_route') < 0) {
     startSum.addEventListener('input', () => {
         start_Sum = startSum.value
 
-        let href = `http://localhost:3030/create_route?points=${string_points}&start_sum=${start_Sum}`
+        let href = `/create_route?points=${string_points}&start_sum=${start_Sum}`
         saveHref.setAttribute('href', href)
     })
 }
@@ -58,7 +58,7 @@ function render(points) {
         routeList.innerHTML += points[i]
     }    
 
-    let href = `http://localhost:3030/create_route?points=${string_points}&start_sum=${start_Sum}`
+    let href = `/create_route?points=${string_points}&start_sum=${start_Sum}`
     saveHref.setAttribute('href', href)
 
 }
@@ -89,6 +89,8 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
     let count = 0
 
+    const startSum = document.querySelector('#startsum')
+    const changeStart = document.querySelector('#change_start')
     const costs = document.querySelectorAll('.cost-input')
     const confirmButton = document.querySelectorAll('#confirm')
     const sendButton = document.querySelectorAll('#send')
@@ -97,14 +99,15 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
     let sum = 0
     let roadsum_value = 0
+    let startsum_value = 0
 
     roadsum.addEventListener('input', () => {
 
         roadsum_value = roadsum.value
         leftoversum.value = parseInt(startsum.value) - parseInt(wastedsum.value) - roadsum_value
-        console.log(roadsum_value)        
+        // console.log(roadsum_value)
 
-        href = `http://localhost:3030/save_history?points=${pointNames}&costs=${pointCosts}&start_sum=${startsum.value}&wasted_sum=${wastedsum.value}&road_sum=${roadsum_value}&leftover=${leftoversum.value}`
+        href = `/save_history?points=${pointNames}&costs=${pointCosts}&start_sum=${startsum.value}&wasted_sum=${wastedsum.value}&road_sum=${roadsum_value}&leftover=${leftoversum.value}`
 
         saveButton.childNodes[0].setAttribute('href', href)
 
@@ -139,7 +142,7 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
                 let index = temp_array.indexOf(temp_array.find(checkbox => checkbox.dataset.point == e.getAttribute('data-point')))
 
-                sendButton[index].childNodes[0].setAttribute('href', `http://localhost:3030/current_route?name=${e.getAttribute('data-point')}&done=${e.checked}`)
+                sendButton[index].childNodes[0].setAttribute('href', `/current_route?name=${e.getAttribute('data-point')}&done=${e.checked}`)
 
             } else {
 
@@ -165,7 +168,7 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
             let index = temp_array.indexOf(temp_array.find(point => point.dataset.point == e.getAttribute('data-point')))
 
-            sendButton[index].childNodes[0].setAttribute('href', `http://localhost:3030/current_route?name=${e.getAttribute('data-point')}&cost=${document.querySelector(`#${e.getAttribute('data-point')}`).value}`)
+            sendButton[index].childNodes[0].setAttribute('href', `/current_route?name=${e.getAttribute('data-point')}&cost=${document.querySelector(`#${e.getAttribute('data-point')}`).value}`)
 
         })
     })
@@ -175,6 +178,16 @@ if((document.location.href).indexOf('current_route') >= 0) {
         interval = setInterval(() => {
             count += 1
         }, 1000)
+
+    })
+
+    startSum.addEventListener('input', () => {
+
+        startsum_value = startSum.value
+
+        href = `/current_route?new_start=${startsum_value}`
+
+        changeStart.setAttribute('href', href)
 
     })
 

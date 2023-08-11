@@ -87,7 +87,7 @@ h1 {
 }
 
     #save_route a, #save_route a:visited {
-        padding: 10px 5px;
+        padding: 8px 5px;
         text-decoration: none;
         color: #000;
     }
@@ -341,9 +341,39 @@ h1 {
         }
 
             .sum-block label {
-                width: 40%;
-                margin-right: 1%;
+                width: 25%;
+                /* margin-right: .05%; */
             }
+
+            .sum-block button {
+                width: 100%;
+                font-family: var(--main-font);
+                font-weight: var(--nav-weight);
+                background: none;
+                border: 1px solid #000;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .sum-block button:hover {
+                background: #000;
+                color: #fff;
+            }
+
+                .sum-block button #change_start {
+                    text-decoration: none;
+                    color: #000;
+                    cursor: pointer;
+                }
+
+                .sum-block button #change_start:hover {
+                    color: #fff;
+                }
+
+                .sum-block button #change_start:visited {
+                    text-decoration: none;
+                    color: #000;
+                }
     
         .finalsum input {
             width: 20%;        
