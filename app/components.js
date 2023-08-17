@@ -28,10 +28,20 @@ exports.createComponent = createComponent =
 `
     <div class="body-wrapper"></div>
     <section class="addAction">
-        <label for="point-name">Добавить точку маршрута</label>
+        <label for="point-name">Название точки</label>
         <input type="text" name="point-name" id="point_name">
         <button id="add_point" type="submit">Добавить точку</button>
         <button type="submit" id="save_route"><a id="save">Создать маршрут</a></button>
+    </section>
+`
+
+exports.addRouteComponent = addRouteComponent =
+`
+    <button type="submit" id="add_to_route">Добавить точку в маршрут</button>    
+    <section class="addActionRoute" style="margin-top:1%;">
+        <label for="point-name">Название точки</label>
+        <input type="text" name="point-name" id="point_name">
+        <button id="add_point" type="submit">Добавить точку</button>
     </section>
 `
 
@@ -75,6 +85,10 @@ exports.extraSumFields = extraSumFields = (contents) =>
         <div class="sum-block">
             <label for="finalleftover">Остаток: </label>
             <input type="text" name="finalleftover" id="leftoversum" value="0">
+            <label for="cashless_check">Безнал</label>
+            <input type="checkbox" name="cashless_check" id="cashlesscheck">
+            <label for="finalleftover_cashless" id="cashless-leftoversum">На карту:</label>
+            <input type="text" name="finalleftover_cashless" id="cashless-leftoversum" value="0">
         </div>
     </section>
 `
