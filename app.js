@@ -250,7 +250,7 @@ app.get('/current_route', async function(req, res) {
     if(res.statusCode == 200) {
 
         html = components.baseHtml(
-            components.navBar + `<h1 class="current-route">Текущий маршрут</h1><button type="submit" id="save_route"><a>Сохранить маршрут</a></button>` + components.routeList(route) + components.extraSumFields(startSum)
+            components.navBar + `<h1 class="current-route">Текущий маршрут</h1><button type="submit" id="save_route"><a>Сохранить маршрут</a></button>` + components.addRouteComponent + components.routeList(route) + components.extraSumFields(startSum)
         )
 
         res.send(html)
@@ -309,14 +309,32 @@ app.get('/save_history', async function(req, res) {
 
     }
 
-    let obj = {
-        points: points,
-        start_sum: parseInt(req.query.start_sum),
-        wasted_sum: parseInt(req.query.wasted_sum),
-        road_sum: parseInt(req.query.road_sum),
-        left_over: parseInt(req.query.leftover),
-        route_date: dateString
-    }
+    let obj = {}
+
+    if(req.query.cashless_leftover != undefined) {
+
+        obj = {
+            points: points,
+            start_sum: parseInt(req.query.start_sum),
+            wasted_sum: parseInt(req.query.wasted_sum),
+            road_sum: parseInt(req.query.road_sum),
+            left_over: parseInt(req.query.leftover),
+            cashless_leftover: parseInt(req.query.cashless_leftover),
+            route_date: dateString
+        }
+
+    } else {
+
+        obj = {
+            points: points,
+            start_sum: parseInt(req.query.start_sum),
+            wasted_sum: parseInt(req.query.wasted_sum),
+            road_sum: parseInt(req.query.road_sum),
+            left_over: parseInt(req.query.leftover),
+            route_date: dateString
+        }
+
+    }    
 
     routes.push(obj)
 
@@ -385,18 +403,40 @@ app.get('/show_history', async function(req, res){
 
             content += `</div>`
 
-            content +=  `<span>${e.start_sum}</span>
-                        <span>${e.wasted_sum}</span>
-                        <span>${e.road_sum}</span>
-                        <span>${e.left_over}</span>
-                        <span>${e.route_date}</span>
-                        <span><button type="submit" id="remove"><a href="/show_history?date=${e.route_date}">
-                        <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="24" height="24" fill=""/>
-                        <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>                            
-                        </svg>
-                        </a></button></span>`
+            if(e.cashless_leftover != 0 && e.cashless_leftover != undefined && e.cashless_leftover != null) {
+
+                content +=  `<span>${e.start_sum}</span>
+                            <span>${e.wasted_sum}</span>
+                            <span>${e.road_sum}</span>
+                            <span class="leftover">
+                                ${e.left_over}
+                                <span>На карту: ${e.cashless_leftover}</span>
+                            </span>
+                            <span>${e.route_date}</span>
+                            <span><button type="submit" id="remove"><a href="/show_history?date=${e.route_date}">
+                            <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill=""/>
+                            <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>                            
+                            </svg>
+                            </a></button></span>`
+
+            } else {
+
+                content +=  `<span>${e.start_sum}</span>
+                            <span>${e.wasted_sum}</span>
+                            <span>${e.road_sum}</span>
+                            <span class="leftover">${e.left_over}</span>
+                            <span>${e.route_date}</span>
+                            <span><button type="submit" id="remove"><a href="/show_history?date=${e.route_date}">
+                            <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill=""/>
+                            <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"/>                            
+                            </svg>
+                            </a></button></span>`
+
+            }
 
             content += `</div>`
 

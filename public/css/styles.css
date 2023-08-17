@@ -75,7 +75,7 @@ h1 {
         color: #ff4343;
     }
 
-#save_route {
+#save_route, #add_to_route {
     width: 20%;
     margin: 0 auto;
     display: flex;
@@ -86,13 +86,20 @@ h1 {
     height: 40px;
 }
 
+#add_to_route {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
     #save_route a, #save_route a:visited {
         padding: 8px 5px;
         text-decoration: none;
         color: #000;
     }
 
-    #save_route:hover {
+    #save_route:hover, #add_to_route:hover {
         color: #fff;
         background-color: #000;
     }
@@ -101,7 +108,7 @@ h1 {
         color: #fff;
     }
 
-.addAction, .addSend {
+.addAction, .addSend, .addActionRoute {
     position: relative;
     z-index: 1;
     margin: 0 auto;
@@ -115,6 +122,10 @@ h1 {
     font-weight: var(--main-weight);
 }
 
+.addActionRoute {
+    display: none;
+}
+
     .addAction #save, .addAction #save:visited {
         text-decoration: none;
         color: #000;
@@ -124,13 +135,13 @@ h1 {
         color: #fff;
     }
 
-    .addAction label, .addSend label {
+    .addAction label, .addSend label, .addActionRoute label {
         text-align: center;
         font-size: 1rem;
         width: 20%;
     }
 
-    .addAction #point_name, .addSend #textSend, .addSend #textQuantity {            
+    .addAction #point_name, .addSend #textSend, .addSend #textQuantity, .addActionRoute #point_name {            
         background: none;
         border: none;
         height: 30px;
@@ -150,7 +161,7 @@ h1 {
             transition: .3s ease-in !important;
         }
 
-    .addAction #add_point, .addAction #save_route, .addSend #addSend {
+    .addAction #add_point, .addAction #save_route, .addSend #addSend, .addActionRoute #add_point {
         font-size: .7rem;
         width: 16%;
         height: 30px;
@@ -320,29 +331,29 @@ h1 {
                 color: #000;
                 transition: .3s ease-in;
             }
-
-     .finalsum {
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: flex-end;
-        margin: 0 auto;
-        font-family: var(--main-font);
-    }
+    
+        .finalsum {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            margin: 0 auto;
+            font-family: var(--main-font);
+        }
 
         .finalsum .sum-block {
             display: flex;
-            align-content: center;
+            align-items: center;
             justify-content: center;
-            width: 100%;
+            width: 25%;
             padding: 10px 15px;
         }
 
             .sum-block label {
                 width: 25%;
-                /* margin-right: .05%; */
+                margin-left: 2%;
             }
 
             .sum-block button {
@@ -374,6 +385,24 @@ h1 {
                     text-decoration: none;
                     color: #000;
                 }
+
+            .sum-block #cashlesscheck {
+                display: flex;
+                width: 16px;
+                height: 16px;
+            }
+
+            .sum-block #cashless-leftoversum {
+                display: none;
+            }
+
+    .leftover {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start !important;
+        text-align: left;
+    }
     
         .finalsum input {
             width: 20%;        
@@ -485,3 +514,7 @@ h1 {
                 background: #fff;
                 transition: .3s ease-in;
             }
+
+/* @media screen and (max-width: ;) {
+
+} */

@@ -1,6 +1,7 @@
 let points = []
 let string_points = []
 
+const addAction = document.querySelector('.addActionRoute')
 const addButton = document.querySelector('#add_point')
 const pointName = document.querySelector('#point_name')
 const routeList = document.querySelector('.route-list')
@@ -68,7 +69,7 @@ const pointsCard = document.querySelectorAll('.card')
 const startsum = document.querySelector('#startsum')
 const wastedsum = document.querySelector('#wastedsum')
 const roadsum = document.querySelector('#roadsum')
-const leftoversum = document.querySelector('#leftoversum')
+let leftoversum = document.querySelector('#leftoversum')
 
 let pointNames = []
 let pointCosts = []
@@ -89,6 +90,7 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
     let count = 0
 
+    const addToRouteButton = document.querySelector('#add_to_route')
     const startSum = document.querySelector('#startsum')
     const changeStart = document.querySelector('#change_start')
     const costs = document.querySelectorAll('.cost-input')
@@ -96,10 +98,13 @@ if((document.location.href).indexOf('current_route') >= 0) {
     const sendButton = document.querySelectorAll('#send')
     const doneButton = document.querySelectorAll('#done')
     const startTime = document.querySelector('#start_time')
+    const cashlessCheck = document.querySelector('#cashlesscheck')
+    const cashlessLeftover = document.querySelectorAll('#cashless-leftoversum')
 
     let sum = 0
     let roadsum_value = 0
     let startsum_value = 0
+    let cashless_value = 0
 
     roadsum.addEventListener('input', () => {
 
@@ -188,6 +193,44 @@ if((document.location.href).indexOf('current_route') >= 0) {
         href = `/current_route?new_start=${startsum_value}`
 
         changeStart.setAttribute('href', href)
+
+    })
+
+    cashlessCheck.addEventListener('change', () => {
+        if(cashlessCheck.checked === true) {
+            cashlessLeftover.forEach(e => {
+                e.style.display = 'flex'
+            })
+        } else {
+            cashlessLeftover.forEach(e => {
+                e.style.display = 'none'
+            })
+        }
+    })
+
+    cashlessLeftover[1].addEventListener('input', () => {
+
+        cashless_value = cashlessLeftover[1].value
+
+        leftoversum.value = parseInt(startsum.value) - parseInt(wastedsum.value) - roadsum_value - cashless_value
+
+        href = `/save_history?points=${pointNames}&costs=${pointCosts}&start_sum=${startsum.value}&wasted_sum=${wastedsum.value}&road_sum=${roadsum_value}&leftover=${leftoversum.value}&cashless_leftover=${cashless_value}`
+
+        saveButton.childNodes[0].setAttribute('href', href)
+
+    })
+
+    addToRouteButton.addEventListener('click', () => {
+
+        if(addAction.style.display == 'none' || addAction.style.display == '') {
+
+            addAction.style.display = 'flex'
+
+        } else {
+
+            addAction.style.display = 'none'
+
+        }
 
     })
 
