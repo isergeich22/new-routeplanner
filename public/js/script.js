@@ -90,6 +90,8 @@ if((document.location.href).indexOf('current_route') >= 0) {
 
     let count = 0
 
+    const pointName = document.querySelector('#point_name')
+    const addToRoute = document.querySelector('#addToRoute')
     const addToRouteButton = document.querySelector('#add_to_route')
     const startSum = document.querySelector('#startsum')
     const changeStart = document.querySelector('#change_start')
@@ -233,5 +235,13 @@ if((document.location.href).indexOf('current_route') >= 0) {
         }
 
     })
+
+    pointName.addEventListener('input', () => {
+
+        let href = `/current_route?point=${pointName.value}`
+
+        addToRoute.setAttribute('href', href)
+
+    }) 
 
 }

@@ -119,6 +119,30 @@ app.get('/current_route', async function(req, res) {
 
     }
 
+    async function changeRoute(path) {
+
+        let data = fs.readFileSync(path)
+
+        let result = JSON.parse(data)
+
+        let points = result.points
+
+        points.push({
+            name: req.query.point,
+            cost: 0,
+            done: false,
+            time: 0
+        })
+
+        let obj = {
+            points: points,
+            start_sum: result.start_sum
+        }
+
+        fs.writeFileSync(path, JSON.stringify(obj))
+
+    }
+
     async function changeStartSum(path, start_sum) {
 
         if(start_sum != 0 && start_sum != '' && start_sum != undefined && typeof startSum == 'number') {
@@ -220,6 +244,12 @@ app.get('/current_route', async function(req, res) {
             fs.writeFileSync(path, jsonObj)
 
         }
+
+    }
+
+    if(req.query.point !== undefined) {
+
+        await changeRoute(current_route)
 
     }
 

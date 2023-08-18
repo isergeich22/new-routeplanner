@@ -41,7 +41,7 @@ exports.addRouteComponent = addRouteComponent =
     <section class="addActionRoute" style="margin-top:1%;">
         <label for="point-name">Название точки</label>
         <input type="text" name="point-name" id="point_name">
-        <button id="add_point" type="submit">Добавить точку</button>
+        <button id="add_point" type="submit"><a id="addToRoute">Добавить точку</a></button>
     </section>
 `
 
