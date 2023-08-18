@@ -93,18 +93,18 @@ h1 {
     margin-top: 1%;
 }
 
-    #save_route a, #save_route a:visited {
+    #save_route a, #save_route a:visited, #add_point a, #add_point a:visited {
         padding: 8px 5px;
         text-decoration: none;
         color: #000;
     }
 
-    #save_route:hover, #add_to_route:hover {
+    #save_route:hover, #add_point:hover {
         color: #fff;
         background-color: #000;
     }
 
-    #save_route a:hover {
+    #save_route a:hover, #add_point a:hover {
         color: #fff;
     }
 
@@ -427,7 +427,7 @@ h1 {
         }
 
             button:hover {
-                background: #000;
+                background: #000 !important;
                 color: #fff;
                 transition: .3s ease-in;
             }
